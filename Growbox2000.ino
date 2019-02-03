@@ -189,8 +189,14 @@ void ReadSoilMoisture()
 
 void ReadDhtSensor()
 {
-	_temperature = _dhtSensor.readTemperature();
-	_humidity = _dhtSensor.readHumidity();
+	float temperatureReading = _dhtSensor.readTemperature();
+	float humidityReading = _dhtSensor.readHumidity();
+
+	if (isnan(temperatureReading) == false)
+		_temperature = temperatureReading;
+
+	if (isnan(humidityReading) == false)
+		_humidity = humidityReading;
 }
 
 void UpdateDisplayValues()
